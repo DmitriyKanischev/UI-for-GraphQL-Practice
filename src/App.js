@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Tabs from './components/Tabs/Tabs';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './components/theme';
@@ -9,16 +9,14 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
-class App extends Component {
-  render() {
-    return (
+function App() {
+  	return (
       <ApolloProvider client={client}>
         <ThemeProvider theme={theme}>
           <Tabs />
         </ThemeProvider>
       </ApolloProvider>
     );
-  }
 }
 
 export default App;
