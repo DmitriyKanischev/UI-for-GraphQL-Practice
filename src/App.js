@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Tabs from './components/Tabs/Tabs';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './components/theme';
+import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const client = new ApolloClient({
+  uri: 'http://localhost:3005/graphql',
+  cache: new InMemoryCache()
+})
+
+class App extends Component {
+  render() {
+    return (
+      <ApolloProvider client={client}>
+        <ThemeProvider theme={theme}>
+          <Tabs />
+        </ThemeProvider>
+      </ApolloProvider>
+    );
+  }
 }
 
 export default App;
