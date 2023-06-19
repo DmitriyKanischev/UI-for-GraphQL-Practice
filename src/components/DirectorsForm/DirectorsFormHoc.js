@@ -1,6 +1,19 @@
 import { withStyles } from '@mui/styles';
 import { compose } from 'recompose';
+import { graphql } from '@apollo/client/react/hoc';
+
+import { addDirectorMutation } from './mutations';
+import {directorsQuery} from '../DirectorsTable/queries'
 
 import { styles } from './styles';
 
-export default compose(withStyles(styles));
+const withGraphqlAdd = graphql(addDirectorMutation, {
+    props: ({mutate}) => ({
+        addDirector: director => mutate({
+            variables: director,
+            refetchQueries: [{query: directorsQuery}]           //For reload data
+        })
+    })
+})
+
+export default compose(withStyles(styles), withGraphqlAdd);
