@@ -8,10 +8,13 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import BlockIcon from '@mui/icons-material/Block';
 
+import withHocs from './MoviesDialogHoc'
+
 class MoviesDialog extends React.Component {
 
   handleDelete = () => {
-    const { id, handleClose } = this.props;
+    const { id, handleClose, deleteMovie } = this.props;
+    deleteMovie(id)
     handleClose();
   }
 
@@ -44,4 +47,4 @@ class MoviesDialog extends React.Component {
   }
 }
 
-export default MoviesDialog;
+export default withHocs(MoviesDialog);
