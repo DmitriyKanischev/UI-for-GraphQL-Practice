@@ -23,7 +23,7 @@ class SimpleTabs extends React.Component {
     value: 0,
   };
 
-  handleChange = (event, value) => { this.setState({ value }); };
+  handleChange = (event, value) => { this.setState({value}); };
   handleChangeIndex = index => { this.setState({ value: index }); };
 
   render() {
